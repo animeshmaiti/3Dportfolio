@@ -33,7 +33,7 @@ const ServiceCard = ({index,title,icon}) => (
       </div>
     </motion.div>
   </Tilt> 
-)
+);
 const About = () => {
   return (
     <>
