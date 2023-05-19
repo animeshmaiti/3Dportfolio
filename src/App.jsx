@@ -9,6 +9,7 @@ import {
   Tech,
   Works,
   StarsCanvas,
+  Footer,
 } from "./components";
 
 const App = () => {
@@ -27,6 +28,9 @@ const App = () => {
         <div className="relative z-0">
           <Contact />
           <StarsCanvas />
+        </div>
+        <div className=" bg-tertiary ">
+          <Footer />
         </div>
       </div>
     </BrowserRouter>

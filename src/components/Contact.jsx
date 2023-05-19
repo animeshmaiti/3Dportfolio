@@ -7,6 +7,7 @@ import { EarthCanvas } from "./canvas";
 import { slideIn } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
 
+
 const Contact = () => {
   const formRef = useRef();
   const [form, setForm] = useState({
@@ -16,9 +17,36 @@ const Contact = () => {
   });
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {};
-
-  const handleSubmit = (e) => {};
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    emailjs.send('service_liaf60n',
+     'template_fhiefjg',
+     {
+        name: form.name,
+        message: form.message,
+        email: form.email,
+     },
+     'LfWnA8yeQ58g9TeG0'
+     )
+      .then(() => {
+        setLoading(false);
+        alert("Message sent successfully!");
+        setForm({
+          name: "",
+          email: "",
+          message: "",
+        }, (error) =>{
+          console.log(error);
+          alert("Message not sent!");
+        });
+      })
+  };
 
   return (
     <div
@@ -76,14 +104,16 @@ const Contact = () => {
               value={form.message}
               onChange={handleChange}
               placeholder="What do you want to say?"
-              className="bg-tertiary p-4 placeholder:text-secondary
+              style={{resize:"none"}}
+              onScroll={false}
+              className="bg-tertiary p-4 placeholder:text-secondary 
               rounded-lg outline-none border-none text-white"
             />
           </label>
           <button
               type="submit"
               className="bg-tertiary py-3 px-8 w-fit text-white
-              outline-none font-bold shadow-md shadow-primary rounded-xl bg"
+              outline-none font-bold shadow-md shadow-primary rounded-xl"
             >
               {loading ? "Sending..." : "Send"}
             </button>
@@ -91,7 +121,7 @@ const Contact = () => {
       </motion.div>
       <motion.div 
        variants={slideIn("right","tween",0.2,1)}
-       className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px] "
+       className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
        >
         <EarthCanvas />
       </motion.div>
