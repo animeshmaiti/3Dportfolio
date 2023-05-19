@@ -105,7 +105,6 @@ const Contact = () => {
               onChange={handleChange}
               placeholder="What do you want to say?"
               style={{resize:"none"}}
-              onScroll={false}
               className="bg-tertiary p-4 placeholder:text-secondary 
               rounded-lg outline-none border-none text-white"
             />
