@@ -29,7 +29,7 @@ const App = () => {
           <Contact />
           <StarsCanvas />
         </div>
-        <div className=" bg-tertiary ">
+        <div >
           <Footer />
         </div>
       </div>
